@@ -1,0 +1,9 @@
+App.tsx
+components\Header.tsx: top
+components\Hero.tsx: home
+components\Features.tsx: module
+components\Roadmap.tsx: roadmap
+components\Metrics.tsx: impact
+components\TechStack.tsx: TechStack
+components\CTASection.tsx: email
+components\Footer.tsx: bottom
