@@ -14,13 +14,43 @@ const Contact: React.FC = () => {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleSubmitForm = (e: React.FormEvent) => {
+  const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.accepted) return;
     if (!form.firstName || !form.lastName || !form.company || !form.country || !form.phone || !form.email) return;
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 3000);
-    setForm({ firstName: '', lastName: '', company: '', country: '', phone: '', email: '', comments: '', accepted: false });
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          company: form.company,
+          country: form.country,
+          phone: form.phone,
+          email: form.email,
+          comments: form.comments,
+          accepted: form.accepted,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setFormSubmitted(true);
+        setTimeout(() => setFormSubmitted(false), 3000);
+        setForm({ firstName: '', lastName: '', company: '', country: '', phone: '', email: '', comments: '', accepted: false });
+      } else {
+        alert('Error submitting form: ' + (data.message || 'Please try again'));
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to connect to server. Please ensure the backend is running.');
+    }
   };
 
   return (
