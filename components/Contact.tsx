@@ -41,16 +41,16 @@ const Contact: React.FC = () => {
               Secure your spot for Phase 1 MVP access today.
             </p> */}
             <p className="mt-6 text-sm text-blue-300">
-               Limited spots available for early adopters.<br></br>
-               Priority given to regional infrastructure players.
+              Limited spots available for early adopters.<br></br>
+              Priority given to regional infrastructure players.
             </p>
-            
+
             <h3 className="mt-6 text-2xl font-semibold text-white">We're Here to Help</h3>
             <p className="text-lg text-blue-100">
               Your questions, feedbacks, and collaboration proposals are Welcome.
             </p>
-            <p className="text-sm text-blue-300"> 
-              Unable to find the information you are looking for or have something you wish to ask us?<br></br>
+            <p className="text-sm text-blue-300">
+              Unable to find the information you are looking for or have something you wish to ask us?
               Simply fill in this form below and we will get back to you shortly!
             </p>
           </div>
@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Phone number *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Contact Number *</label>
                 <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
               </div>
               <div className="md:col-span-2">

@@ -2,9 +2,9 @@ import React from 'react';
 
 const Sector: React.FC = () => {
   const sectors = [
-    { title: 'Oil & Gas', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.' },
-    { title: 'Construction', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.' },
-    { title: 'Marine Logistic', desc: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.' },
+    { title: 'Oil & Gas', desc: 'Field Exploration, Operational Support, Process Safety, Industrial Supply' },
+    { title: 'Construction', desc: 'Power Equipment, Safety Gear, Material Handling, Site Measurement' },
+    { title: 'Marine Logistic', desc: 'Vessel Management, Port Operations, Cargo Logistics, Route Tracking' },
     { title: 'MRO', desc: 'Maintenance, Repair, Overhaul' },
     { title: 'EPC', desc: 'Engineering, Procurement, Construction' },
     { title: 'ESG', desc: 'Environmental, Social, Governance' },

@@ -1,10 +1,10 @@
-import { 
-  ShieldCheck, 
-  BarChart3, 
-  Database, 
-  Network, 
-  TrendingUp, 
-  Clock, 
+import {
+  ShieldCheck,
+  BarChart3,
+  Database,
+  Network,
+  TrendingUp,
+  Clock,
   PackageCheck,
   Zap
 } from 'lucide-react';
@@ -91,14 +91,14 @@ export const SUCCESS_METRICS = [
     icon: ShieldCheck
   },
   {
-    label: 'On-time Collections',
-    value: '>90%',
+    label: 'Credit Rail',
+    value: 'Scalable',
     subtext: 'Improved cash flow velocity',
     icon: Clock
   },
   {
-    label: 'Idle Stock Reduction',
-    value: '50%',
+    label: 'Demand Driven Merchandise',
+    value: '100%',
     subtext: 'Optimized inventory utilization',
     icon: PackageCheck
   },
