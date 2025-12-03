@@ -7,6 +7,7 @@ import Metrics from './components/Metrics';
 import TechStack from './components/TechStack';
 import Contact from './components/Contact';
 import Investor from './components/Investor';
+import Funding from './components/Funding';
 import Sector from './components/sector';
 import HowItWorks from './components/HowItWorks';
 import FAQ from './components/FAQ';
@@ -23,11 +24,12 @@ const App: React.FC = () => {
         <Roadmap />
         <Metrics />
         <TechStack />
+        <Sector />
+        <Investor />
+        <Funding />
         <HowItWorks />
         <FAQ />
         <Glossary />
-        <Investor />
-        <Sector />
         <Contact />
       </main>
       <Footer />

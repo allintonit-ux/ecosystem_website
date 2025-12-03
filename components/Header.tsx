@@ -37,10 +37,9 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -87,6 +86,7 @@ const Header: React.FC = () => {
                         { label: 'Impact', href: '#impact' },
                         { label: 'TechStack', href: '#tech' },
                         { label: 'Investor', href: '#investor' },
+                        { label: 'Crowdfunding', href: '#funding' },
                         { label: 'Buyer', href: '#buyer' },
                         { label: 'Seller', href: '#seller' },
                         { label: 'How it works', href: '#how' },
@@ -106,9 +106,8 @@ const Header: React.FC = () => {
               </div>
             </div>
             <div
-              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${
-                isSearchFocused && searchQuery.trim() ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-              }`}
+              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${isSearchFocused && searchQuery.trim() ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
             >
               {[
                 { label: 'Modules', href: '#modules' },
@@ -116,6 +115,7 @@ const Header: React.FC = () => {
                 { label: 'Impact', href: '#impact' },
                 { label: 'TechStack', href: '#tech' },
                 { label: 'Investor', href: '#investor' },
+                { label: 'Crowdfunding', href: '#funding' },
                 { label: 'Buyer', href: '#buyer' },
                 { label: 'Seller', href: '#seller' },
                 { label: 'How it works', href: '#how' },
@@ -148,15 +148,18 @@ const Header: React.FC = () => {
               <ChevronDown className="w-4 h-4" />
             </div>
             <div
-              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${
-                isPOCOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-              }`}
+              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${isPOCOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
             >
               <a href="#roadmap" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Roadmap</a>
               <a href="#impact" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">Impact</a>
               <a href="#tech" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">TechStack</a>
             </div>
           </div>
+
+          <a href="#sector" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Sector</a>
+          <a href="#investor" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Investor</a>
+          <a href="#funding" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Crowdfunding</a>
 
           <div
             className="relative"
@@ -175,9 +178,8 @@ const Header: React.FC = () => {
               <ChevronDown className="w-4 h-4" />
             </div>
             <div
-              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${
-                isPlatformOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-              }`}
+              className={`absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-lg rounded-lg p-2 transition-opacity duration-200 ${isPlatformOpenDesktop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
             >
               <a href="#how" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">How it works</a>
               <a href="#faq" className="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50 hover:text-brand-700">FAQ</a>
@@ -185,10 +187,7 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          <a href="#investor" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Investor</a>
-          <a href="#sector" className="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">Sector</a>
-
-          <a 
+          <a
             href="#contact"
             className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50"
           >
@@ -197,7 +196,7 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden text-slate-700"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -209,24 +208,7 @@ const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-lg p-4 flex flex-col gap-4">
           <div>
-            <button 
-              className="w-full flex items-center justify-between text-base font-medium text-slate-700"
-              onClick={() => setIsPlatformOpenMobile(!isPlatformOpenMobile)}
-            >
-              <span>Platform</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${isPlatformOpenMobile ? 'rotate-180' : ''}`} />
-            </button>
-            {isPlatformOpenMobile && (
-              <div className="mt-2 pl-2 flex flex-col gap-2">
-                <a href="#how" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>How it works</a>
-                <a href="#faq" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
-                <a href="#glossary" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Glossary</a>
-              </div>
-            )}
-          </div>
-
-          <div>
-            <button 
+            <button
               className="w-full flex items-center justify-between text-base font-medium text-slate-700"
               onClick={() => setIsPOCOpenMobile(!isPOCOpenMobile)}
             >
@@ -242,10 +224,28 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <a href="#investor" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Investor</a>
           <a href="#sector" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Sector</a>
+          <a href="#investor" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Investor</a>
+          <a href="#funding" className="text-base font-medium text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Crowdfunding</a>
 
-          <a 
+          <div>
+            <button
+              className="w-full flex items-center justify-between text-base font-medium text-slate-700"
+              onClick={() => setIsPlatformOpenMobile(!isPlatformOpenMobile)}
+            >
+              <span>Platform</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${isPlatformOpenMobile ? 'rotate-180' : ''}`} />
+            </button>
+            {isPlatformOpenMobile && (
+              <div className="mt-2 pl-2 flex flex-col gap-2">
+                <a href="#how" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>How it works</a>
+                <a href="#faq" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
+                <a href="#glossary" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Glossary</a>
+              </div>
+            )}
+          </div>
+
+          <a
             href="#contact"
             className="bg-brand-600 text-white px-4 py-3 rounded-lg text-center font-medium"
             onClick={() => setIsMobileMenuOpen(false)}

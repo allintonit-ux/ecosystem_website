@@ -11,11 +11,11 @@ const Footer: React.FC = () => {
               <span className="font-bold text-xl">X</span>
             </div>
             <p className="max-w-sm text-sm leading-relaxed mb-6">
-              The first ecosystem platform for the cross-sector. 
+              The first ecosystem platform for the cross-sector.
               Connecting buyers, sellers, and PEs to drive efficiency, compliance, and liquidity.
             </p>
           </div>
-          
+
           <div>
             <h4 className="text-white font-semibold mb-4">POC</h4>
             <ul className="space-y-2 text-sm">
@@ -23,6 +23,12 @@ const Footer: React.FC = () => {
               <li><a href="#impact" className="hover:text-white transition-colors">Impact</a></li>
               <li><a href="#tech" className="hover:text-white transition-colors">TechStack</a></li>
             </ul>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <a href="#sector" className="text-white font-semibold">Sector</a>
+            <a href="#investor" className="text-white font-semibold">Investor</a>
+            <a href="#funding" className="text-white font-semibold">Crowdfunding</a>
           </div>
 
           <div>
@@ -35,28 +41,17 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <a href="#investor" className="text-white font-semibold mb-4 inline-block">Investor</a>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#investor" className="hover:text-white transition-colors"></a></li>
-            </ul>
-            <a href="#sector" className="text-white font-semibold mb-4 mt-6 inline-block">Sector</a>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#sector" className="hover:text-white transition-colors"></a></li>
-            </ul>
-          </div>
-
-          <div>
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm">
               <li>Singapore HQ</li>
               <li><a href="mailto:partners@formx.com" className="hover:text-white transition-colors">partners@formx.com</a></li>
               <li className="pt-2">
-                 <span className="text-xs bg-slate-800 px-2 py-1 rounded border border-slate-700">Regional Hub Initiative</span>
+                <span className="text-xs bg-slate-800 px-2 py-1 rounded border border-slate-700">Regional Hub Initiative</span>
               </li>
             </ul>
           </div>
         </div>
-        
+
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p>© {new Date().getFullYear()} X Ecosystem. All rights reserved.</p>
           <div className="flex gap-6">

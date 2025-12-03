@@ -3,8 +3,14 @@ import React, { useState } from 'react';
 const Glossary: React.FC = () => {
   const items = [
     { key: 'b', label: 'B', content: 'Buyer' },
-    { key: 'i', label: 'I', content: 'Investor' },
-    { key: 's', label: 'S', content: 'Seller' },
+    {
+      key: 'G', label: 'G', content:
+        'GMP – Good Manufacturing Practice: How you make it (consistent, safe, traceable). GLP – Good Laboratory Practice: How you test it (accurate, lab auditable, compliant). '
+    },
+    {
+      key: '#', label: '#', content:
+        '316L = corrosion-resistant stainless steel with low carbon, ideal for chemical, marine, and high-purity environments'
+    },
   ];
   const [openKey, setOpenKey] = useState<string | null>(null);
 
@@ -19,11 +25,10 @@ const Glossary: React.FC = () => {
           {items.map((item) => (
             <div
               key={item.key}
-              className={`rounded-lg transition-colors ${
-                openKey === item.key
-                  ? 'bg-white border border-slate-200 shadow-sm'
-                  : 'bg-transparent border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm'
-              }`}
+              className={`rounded-lg transition-colors ${openKey === item.key
+                ? 'bg-white border border-slate-200 shadow-sm'
+                : 'bg-transparent border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm'
+                }`}
             >
               <button
                 onClick={() => setOpenKey(openKey === item.key ? null : item.key)}
