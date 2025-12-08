@@ -1,15 +1,148 @@
 import React, { useState } from 'react';
 import Payment from './Payment';
 
+// Pledge Form Component (based on Contact form)
+const PledgeForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+    const [form, setForm] = useState({
+        firstName: '',
+        lastName: '',
+        company: '',
+        country: '',
+        phone: '',
+        email: '',
+        pledgeAmount: '',
+        pledgeFrequency: '',
+        comments: '',
+        accepted: false,
+    });
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    const handleSubmitForm = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!form.accepted) return;
+        if (!form.firstName || !form.lastName || !form.company || !form.country || !form.phone || !form.email) return;
+        setFormSubmitted(true);
+        setTimeout(() => {
+            setFormSubmitted(false);
+            onClose();
+        }, 2000);
+        setForm({ firstName: '', lastName: '', company: '', country: '', phone: '', email: '', pledgeAmount: '', pledgeFrequency: '', comments: '', accepted: false });
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+            <div className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-slate-900">Pledge Now</h2>
+                    <button onClick={onClose} className="text-slate-400 hover:text-slate-600 text-2xl">×</button>
+                </div>
+
+                {formSubmitted && (
+                    <div className="mb-4 bg-green-50 text-green-700 p-3 rounded-md border border-green-200">
+                        Thanks for your pledge! We'll reach out soon.
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmitForm} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">First Name *</label>
+                        <input value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Last Name *</label>
+                        <input value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+                    </div>
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Company *</label>
+                        <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Country *</label>
+                        <select value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required>
+                            <option value="">Select</option>
+                            <option>Singapore</option>
+                            <option>Malaysia</option>
+                            <option>Indonesia</option>
+                            <option>Myanmar</option>
+                            <option>Vietnam</option>
+                            <option>Kazakhstan</option>
+                            <option>Brunei</option>
+                            <option>Cambodia</option>
+                            <option>Laos</option>
+                            <option>Philippines</option>
+                            <option>Thailand</option>
+                            <option>India</option>
+                            <option>China</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Contact Number *</label>
+                        <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+                    </div>
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
+                        <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Pledge Amount ($) *</label>
+                        <input type="number" min="0" step="0.01" value={form.pledgeAmount} onChange={(e) => setForm({ ...form, pledgeAmount: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" placeholder="0.00" required />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Pledge Frequency *</label>
+                        <select value={form.pledgeFrequency} onChange={(e) => setForm({ ...form, pledgeFrequency: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" required>
+                            <option value="">Select</option>
+                            <option>One-time</option>
+                            <option>Monthly</option>
+                            <option>Annually</option>
+                        </select>
+                    </div>
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Additional Comments</label>
+                        <textarea value={form.comments} onChange={(e) => setForm({ ...form, comments: e.target.value })} className="w-full px-3 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500" rows={3} />
+                    </div>
+                    <div className="md:col-span-2 flex items-center gap-2">
+                        <input id="privacy-pledge" type="checkbox" checked={form.accepted} onChange={(e) => setForm({ ...form, accepted: e.target.checked })} className="w-4 h-4 border-slate-300 rounded" />
+                        <label htmlFor="privacy-pledge" className="text-sm text-slate-700">I agree to the privacy policy *</label>
+                    </div>
+                    <div className="md:col-span-2 flex gap-3">
+                        <button type="submit" disabled={!form.accepted} className="flex-1 px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            Submit Pledge
+                        </button>
+                        <button type="button" onClick={onClose} className="px-8 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-semibold transition-colors">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
 const Funding: React.FC = () => {
+    // Left card data
+    const pledgersCount = 59;
+    const pledgersGoal = 1000;
+    const pledgePercentage = ((pledgersCount / pledgersGoal) * 100).toFixed(1);
+    const totalAmount = 234678;
+
+    // Right card data
     const fundedAmount = 12345;
     const goalAmount = 67890;
-    const percentage = ((fundedAmount / goalAmount) * 100).toFixed(1);
-    const investorCount = 42; // You can adjust this number
-    const [showPayment, setShowPayment] = useState(false);
+    const fundPercentage = ((fundedAmount / goalAmount) * 100).toFixed(1);
+    const investorCount = 42;
 
-    const handleWhatsAppShare = () => {
-        const shareText = `Support the X Ecosystem Platform! Help us reach our funding goal of S$${goalAmount.toLocaleString()}! Currently ${percentage}% funded with ${investorCount} funders. Join us in building the future!`;
+    const [showPayment, setShowPayment] = useState(false);
+    const [showPledgeForm, setShowPledgeForm] = useState(false);
+
+    const handleWhatsAppSharePledge = () => {
+        const shareText = `Support the X Ecosystem Platform! Help us reach our goal of ${pledgersGoal} pledgers! Currently ${pledgePercentage}% pledged with ${pledgersCount} pledgers and $${totalAmount.toLocaleString()} raised. Join us in building the future!`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
+    const handleWhatsAppShareFund = () => {
+        const shareText = `Support the X Ecosystem Platform! Help us reach our funding goal of S$${goalAmount.toLocaleString()}! Currently ${fundPercentage}% funded with ${investorCount} funders. Join us in building the future!`;
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
         window.open(whatsappUrl, '_blank');
     };
@@ -24,60 +157,54 @@ const Funding: React.FC = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                        {/* Left side - Visual Abstract Illustration */}
+                        {/* Left side - Pledge card */}
                         <div className="flex items-start justify-center md:justify-end">
-                            <div className="relative w-full max-w-md aspect-square bg-gradient-to-br from-slate-100 to-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col p-6">
-                                {/* Mock UI Header */}
-                                <div className="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
-                                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                                    <div className="ml-auto px-3 py-1 bg-slate-100 rounded-md text-xs font-medium text-slate-500">X Dashboard</div>
-                                </div>
-
-                                {/* Mock Grid */}
-                                <div className="grid grid-cols-2 gap-4 h-full">
-                                    <div className="bg-brand-50/50 rounded-xl p-4 border border-brand-100 flex flex-col justify-between">
-                                        <div className="w-8 h-8 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center mb-2">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                                        </div>
-                                        <div>
-                                            <div className="text-2xl font-bold text-slate-800">Scalable</div>
-                                            <div className="text-xs text-slate-500">Credit Rail</div>
-                                        </div>
+                            <div className="w-full max-w-md aspect-square bg-white border-2 border-slate-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow flex flex-col justify-center">
+                                {/* Progress bar */}
+                                <div className="mb-6">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="text-sm font-medium text-slate-600">Progress</span>
+                                        <span className="text-sm font-bold text-brand-600">{pledgePercentage}% pledged</span>
                                     </div>
-                                    <div className="bg-green-50/50 rounded-xl p-4 border border-green-100 flex flex-col justify-between">
-                                        <div className="w-8 h-8 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-2">
-                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                                        </div>
-                                        <div>
-                                            <div className="text-2xl font-bold text-slate-800">100%</div>
-                                            <div className="text-xs text-slate-500">Demand Driven Merchandise</div>
-                                        </div>
-                                    </div>
-                                    <div className="col-span-2 bg-white rounded-xl border border-slate-100 shadow-sm p-4">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <div className="text-sm font-semibold text-slate-700">Speed of Buyer Onboard</div>
-                                            <div className="text-xs text-brand-600 bg-brand-50 px-2 py-1 rounded">Live Updates</div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                                                <div className="h-full bg-brand-500 w-3/4"></div>
-                                            </div>
-                                            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                                                <div className="h-full bg-purple-500 w-1/2"></div>
-                                            </div>
-                                            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                                                <div className="h-full bg-green-500 w-5/6"></div>
-                                            </div>
-                                        </div>
+                                    <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                                        <div
+                                            className="bg-gradient-to-r from-brand-500 to-brand-600 h-full rounded-full transition-all duration-500"
+                                            style={{ width: `${pledgePercentage}%` }}
+                                        ></div>
                                     </div>
                                 </div>
 
-                                {/* Decorative floating elements */}
-                                <div className="absolute -right-4 top-20 bg-white p-3 rounded-lg shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce duration-[3000ms]">
-                                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                                    <span className="text-xs font-medium text-slate-600">PE Certified</span>
+                                {/* Pledgers count */}
+                                <div className="mb-6">
+                                    <div className="text-4xl font-bold text-slate-900 mb-1">
+                                        {pledgersCount} pledgers
+                                    </div>
+                                    <div className="text-slate-600">
+                                        of <span className="font-semibold">{pledgersGoal}</span> goal
+                                    </div>
+                                </div>
+
+                                {/* Total amount */}
+                                <div className="mb-8">
+                                    <div className="text-lg font-semibold text-slate-700">
+                                        ${totalAmount.toLocaleString()}
+                                    </div>
+                                </div>
+
+                                {/* Action buttons */}
+                                <div className="space-y-3">
+                                    <button
+                                        onClick={() => setShowPledgeForm(true)}
+                                        className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-4 px-6 rounded-xl transition-all shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:scale-[1.02] active:scale-[0.98]"
+                                    >
+                                        PLEDGE NOW
+                                    </button>
+                                    <button
+                                        onClick={handleWhatsAppSharePledge}
+                                        className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-4 px-6 rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                    >
+                                        Share with friends
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -89,12 +216,12 @@ const Funding: React.FC = () => {
                                 <div className="mb-6">
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-sm font-medium text-slate-600">Progress</span>
-                                        <span className="text-sm font-bold text-brand-600">{percentage}% funded</span>
+                                        <span className="text-sm font-bold text-brand-600">{fundPercentage}% funded</span>
                                     </div>
                                     <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
                                         <div
                                             className="bg-gradient-to-r from-brand-500 to-brand-600 h-full rounded-full transition-all duration-500"
-                                            style={{ width: `${percentage}%` }}
+                                            style={{ width: `${fundPercentage}%` }}
                                         ></div>
                                     </div>
                                 </div>
@@ -125,7 +252,7 @@ const Funding: React.FC = () => {
                                         FUND NOW
                                     </button>
                                     <button
-                                        onClick={handleWhatsAppShare}
+                                        onClick={handleWhatsAppShareFund}
                                         className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-4 px-6 rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
                                     >
                                         Share with friends
@@ -137,6 +264,7 @@ const Funding: React.FC = () => {
                 </div>
             </section>
             {showPayment && <Payment onClose={() => setShowPayment(false)} />}
+            {showPledgeForm && <PledgeForm onClose={() => setShowPledgeForm(false)} />}
         </>
     );
 };

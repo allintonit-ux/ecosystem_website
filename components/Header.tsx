@@ -223,7 +223,7 @@ const Header: React.FC = () => {
                 <a href="#story" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Story</a>
                 <a href="#roadmap" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Roadmap</a>
                 <a href="#impact" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Impact</a>
-                <a href="#tech" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>TechStack</a>
+                <a href="#tech" className="text-slate-600 hover:text-brand-600" onClick={() => setIsMobileMenuOpen(false)}>Architecture</a>
               </div>
             )}
           </div>
